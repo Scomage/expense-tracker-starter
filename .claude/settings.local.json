@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cmd.exe /c \"cd /d \\\\\"C:\\\\Users\\\\Jerry\\\\OneDrive\\\\Documents\\\\GitHub\\\\expense-tracker-starter\\\\\" && npm run dev 2>&1\")",
+      "Bash(cmd.exe:*)",
+      "Read(//usr/local/bin/**)",
+      "Read(//usr/bin/**)",
+      "Read(//c/Program Files/**)",
+      "Read(//c/Users/Jerry/AppData/Roaming/**)",
+      "Read(//c/Users/Jerry/AppData/Local/**)",
+      "Bash(powershell.exe:*)",
+      "Bash(cmd:*)",
+      "Bash(\"/c/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Microsoft/VisualStudio/NodeJs/npm.cmd\" run dev)",
+      "Bash(export PATH=\"/c/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Microsoft/VisualStudio/NodeJs:$PATH\")",
+      "Bash(npm install:*)",
+      "Bash(\"/c/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Microsoft/VisualStudio/NodeJs/npm.cmd\" install)"
+    ]
+  }
+}

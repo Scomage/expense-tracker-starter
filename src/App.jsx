@@ -20,6 +20,11 @@ function App() {
     setTransactions([...transactions, transaction]);
   };
 
+  const handleDelete = (id) => {
+    if (!window.confirm("Are you sure you want to delete this transaction?")) return;
+    setTransactions(transactions.filter(t => t.id !== id));
+  };
+
   return (
     <div className="app">
       <h1>Finance Tracker</h1>
@@ -27,7 +32,7 @@ function App() {
 
       <Summary transactions={transactions} />
       <TransactionForm onAdd={handleAdd} />
-      <TransactionList transactions={transactions} />
+      <TransactionList transactions={transactions} onDelete={handleDelete} />
     </div>
   );
 }

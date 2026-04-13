@@ -51,7 +51,7 @@ function TransactionList({ transactions, onDelete }) {
                 {t.type === "income" ? "+" : "-"}${t.amount}
               </td>
               <td>
-                <button className="delete-btn" onClick={() => onDelete(t.id)}>Delete</button>
+                <button className="delete-btn" onClick={() => onDelete(t.id)}>🗑️</button>
               </td>
             </tr>
           ))}

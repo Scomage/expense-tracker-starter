@@ -24,8 +24,14 @@ App runs at `http://localhost:5173`.
 
 ## Architecture
 
-This is a single-file React app — all logic lives in `src/App.jsx`. There are no components split into separate files, no routing, no state management library, and no backend.
+React app with no routing, no state management library, and no backend. Components:
 
-**Known bugs in the starter code (intentional for the course):**
-- `amount` is stored as a string in state; `reduce` does string concatenation instead of numeric addition, so Income/Expenses/Balance totals are wrong. Fix: `parseFloat(t.amount)` in the reduce calls.
+- `App.jsx` — holds `transactions` state and wires components together
+- `Summary.jsx` — receives `transactions`, computes and displays totals (income, expenses, balance)
+- `TransactionForm.jsx` — owns its own form state; calls `onAdd(transaction)` prop on submit
+- `TransactionList.jsx` — owns filter state; receives `transactions` and renders the filtered table
+
+All amounts are stored as numbers. `TransactionForm` uses `parseFloat` when building the new transaction object.
+
+**Known data issue (intentional for the course):**
 - Transaction #4 ("Freelance Work") is typed as `"expense"` but categorized as `"salary"` — a data inconsistency.

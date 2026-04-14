@@ -1,5 +1,7 @@
 import { BarChart, Bar, Cell, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts'
+import { formatCurrency } from './formatCurrency'
 
+// Colors cycle if there are more categories than entries in this array
 const COLORS = ['#0D7377', '#14919B', '#0EA5E9', '#7C3AED', '#047857', '#D97706', '#DC2626']
 
 const TICK_STYLE = { fill: '#9CA3AF', fontSize: 12, fontFamily: 'Manrope, sans-serif', fontWeight: 500 }
@@ -37,15 +39,15 @@ function SpendingChart({ transactions }) {
         <BarChart data={data} margin={{ top: 4, right: 12, left: 0, bottom: 4 }}>
           <CartesianGrid vertical={false} stroke="#EEF1F4" />
           <XAxis dataKey="name" tick={TICK_STYLE} axisLine={false} tickLine={false} />
-          <YAxis tickFormatter={(v) => `$${v}`} tick={TICK_STYLE} axisLine={false} tickLine={false} width={52} />
+          <YAxis tickFormatter={(v) => formatCurrency(v)} tick={TICK_STYLE} axisLine={false} tickLine={false} width={80} />
           <Tooltip
-            formatter={(value) => [`$${value}`, 'Amount']}
+            formatter={(value) => [formatCurrency(value), 'Amount']}
             contentStyle={TOOLTIP_STYLE}
             cursor={{ fill: 'rgba(0,0,0,0.03)' }}
           />
           <Bar dataKey="value" radius={[5, 5, 0, 0]}>
-            {data.map((_, index) => (
-              <Cell key={index} fill={COLORS[index % COLORS.length]} />
+            {data.map((entry, index) => (
+              <Cell key={entry.name} fill={COLORS[index % COLORS.length]} />
             ))}
           </Bar>
         </BarChart>

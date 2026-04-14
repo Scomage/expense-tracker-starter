@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import './App.css'
 import Summary from './Summary'
 import TransactionForm from './TransactionForm'
@@ -17,8 +17,11 @@ function App() {
     { id: 8, description: "Netflix", amount: 15, type: "expense", category: "entertainment", date: "2025-01-10" },
   ]);
 
+  // Start after the highest seed ID to avoid collisions
+  const nextId = useRef(9);
+
   const handleAdd = (transaction) => {
-    setTransactions(prev => [...prev, transaction]);
+    setTransactions(prev => [...prev, { ...transaction, id: nextId.current++ }]);
   };
 
   const handleDelete = (id) => {

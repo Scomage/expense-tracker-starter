@@ -23,7 +23,9 @@ function Summary({ transactions }) {
       </div>
       <div className="summary-card">
         <h3>Balance</h3>
-        <p className="balance-amount">{formatCurrency(balance)}</p>
+        <p className={`balance-amount${balance < 0 ? ' balance-amount--negative' : ''}`}>
+          {formatCurrency(balance)}
+        </p>
       </div>
     </div>
   );

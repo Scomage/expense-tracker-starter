@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { CATEGORIES } from './constants'
+import { INCOME_CATEGORIES, EXPENSE_CATEGORIES } from './constants'
 
 function TransactionForm({ onAdd }) {
   const [description, setDescription] = useState("");
@@ -7,21 +7,31 @@ function TransactionForm({ onAdd }) {
   const [type, setType] = useState("expense");
   const [category, setCategory] = useState("food");
   const [descriptionError, setDescriptionError] = useState("");
+  const [amountError, setAmountError] = useState("");
+
+  const categories = type === "income" ? INCOME_CATEGORIES : EXPENSE_CATEGORIES;
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const parsed = parseFloat(amount);
 
+    let hasError = false;
+
     if (!description.trim()) {
       setDescriptionError("Description cannot be blank.");
-      return;
+      hasError = true;
     }
 
-    if (isNaN(parsed) || parsed <= 0) return;
+    if (isNaN(parsed) || parsed <= 0) {
+      setAmountError("Please enter a valid amount greater than zero.");
+      hasError = true;
+    }
+
+    if (hasError) return;
 
     setDescriptionError("");
+    setAmountError("");
     onAdd({
-      id: Date.now(),
       description: description.trim(),
       amount: parsed,
       type,
@@ -33,6 +43,14 @@ function TransactionForm({ onAdd }) {
     setAmount("");
     setType("expense");
     setCategory("food");
+  };
+
+  const handleTypeChange = (e) => {
+    const newType = e.target.value;
+    setType(newType);
+    // Reset category to first option of the new type to avoid cross-type mismatch
+    const newCategories = newType === "income" ? INCOME_CATEGORIES : EXPENSE_CATEGORIES;
+    setCategory(newCategories[0]);
   };
 
   return (
@@ -58,16 +76,19 @@ function TransactionForm({ onAdd }) {
           value={amount}
           min="0.01"
           step="0.01"
-          onChange={(e) => setAmount(e.target.value)}
+          onChange={(e) => { setAmount(e.target.value); if (amountError) setAmountError(""); }}
+          aria-describedby={amountError ? "amount-error" : undefined}
+          aria-invalid={!!amountError}
         />
+        {amountError && <span id="amount-error" className="field-error">{amountError}</span>}
         <label htmlFor="type" className="sr-only">Type</label>
-        <select id="type" value={type} onChange={(e) => setType(e.target.value)}>
+        <select id="type" value={type} onChange={handleTypeChange}>
           <option value="income">Income</option>
           <option value="expense">Expense</option>
         </select>
         <label htmlFor="category" className="sr-only">Category</label>
         <select id="category" value={category} onChange={(e) => setCategory(e.target.value)}>
-          {CATEGORIES.map(cat => (
+          {categories.map(cat => (
             <option key={cat} value={cat}>{cat}</option>
           ))}
         </select>

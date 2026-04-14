@@ -113,6 +113,7 @@
 .income-amount  { color: var(--income); }
 .expense-amount { color: var(--expense); }
 .balance-amount { color: var(--text-primary); }
+.balance-amount--negative { color: var(--expense); }
 
 /* ── Section headings ────────────────────────────────────────── */
 .spending-chart h2,
@@ -136,15 +137,15 @@
   padding: 24px 28px;
 }
 
-form {
+.add-transaction form {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
   align-items: center;
 }
 
-form input,
-form select {
+.add-transaction form input,
+.add-transaction form select {
   padding: 9px 12px;
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
@@ -159,21 +160,21 @@ form select {
   appearance: none;
 }
 
-form input:focus,
-form select:focus {
+.add-transaction form input:focus,
+.add-transaction form select:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px var(--accent-light);
   background: var(--surface);
 }
 
-form input::placeholder {
+.add-transaction form input::placeholder {
   color: var(--text-muted);
   font-weight: 400;
 }
 
-form input[type="text"]   { flex: 2; min-width: 140px; }
-form input[type="number"] { flex: 1; min-width: 100px; font-variant-numeric: tabular-nums; }
-form select               { flex: 1; min-width: 120px; cursor: pointer; color: var(--text-secondary); }
+.add-transaction form input[type="text"]   { flex: 2; min-width: 140px; }
+.add-transaction form input[type="number"] { flex: 1; min-width: 100px; font-variant-numeric: tabular-nums; }
+.add-transaction form select               { flex: 1; min-width: 120px; cursor: pointer; color: var(--text-secondary); }
 
 .field-error {
   width: 100%;
@@ -183,7 +184,7 @@ form select               { flex: 1; min-width: 120px; cursor: pointer; color: v
   margin-top: -4px;
 }
 
-form button {
+.add-transaction form button {
   padding: 9px 22px;
   background: var(--accent);
   color: #fff;
@@ -198,12 +199,12 @@ form button {
   letter-spacing: 0.01em;
 }
 
-form button:hover {
+.add-transaction form button:hover {
   background: var(--accent-hover);
   box-shadow: 0 2px 8px rgba(13, 115, 119, 0.3);
 }
 
-form button:active { transform: scale(0.98); }
+.add-transaction form button:active { transform: scale(0.98); }
 
 /* ── Transactions ────────────────────────────────────────────── */
 .transactions {
@@ -298,6 +299,14 @@ tbody td:nth-child(1) {
   font-weight: 400;
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum" 1;
+}
+
+/* ── Empty state ─────────────────────────────────────────────── */
+.empty-state {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 13.5px;
+  padding: 32px 0 8px;
 }
 
 /* ── Delete button ───────────────────────────────────────────── */

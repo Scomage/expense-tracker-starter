@@ -1,16 +1,18 @@
-import { BarChart, Bar, Cell, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
+import { BarChart, Bar, Cell, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts'
 
-const COLORS = ['#B45309', '#2563EB', '#15803D', '#DC2626', '#7C3AED', '#0891B2', '#D97706']
+const COLORS = ['#0D7377', '#14919B', '#0EA5E9', '#7C3AED', '#047857', '#D97706', '#DC2626']
 
-const TICK_STYLE = { fill: '#A1A1AA', fontSize: 12, fontFamily: 'Figtree, sans-serif' }
+const TICK_STYLE = { fill: '#9CA3AF', fontSize: 12, fontFamily: 'Manrope, sans-serif', fontWeight: 500 }
+
 const TOOLTIP_STYLE = {
   background: '#FFFFFF',
-  border: '1px solid #E4E0D9',
+  border: '1px solid #E4E8EC',
   borderRadius: '8px',
-  color: '#18181B',
-  fontFamily: 'Figtree, sans-serif',
-  fontSize: 13,
   boxShadow: '0 4px 12px rgba(0,0,0,0.08)',
+  color: '#111827',
+  fontFamily: 'Manrope, sans-serif',
+  fontSize: 13,
+  fontWeight: 500,
 }
 
 function SpendingChart({ transactions }) {
@@ -33,14 +35,15 @@ function SpendingChart({ transactions }) {
       <h2>Spending by Category</h2>
       <ResponsiveContainer width="100%" height={240}>
         <BarChart data={data} margin={{ top: 4, right: 12, left: 0, bottom: 4 }}>
+          <CartesianGrid vertical={false} stroke="#EEF1F4" />
           <XAxis dataKey="name" tick={TICK_STYLE} axisLine={false} tickLine={false} />
-          <YAxis tickFormatter={(v) => `$${v}`} tick={TICK_STYLE} axisLine={false} tickLine={false} />
+          <YAxis tickFormatter={(v) => `$${v}`} tick={TICK_STYLE} axisLine={false} tickLine={false} width={52} />
           <Tooltip
             formatter={(value) => [`$${value}`, 'Amount']}
             contentStyle={TOOLTIP_STYLE}
             cursor={{ fill: 'rgba(0,0,0,0.03)' }}
           />
-          <Bar dataKey="value" radius={[4, 4, 0, 0]}>
+          <Bar dataKey="value" radius={[5, 5, 0, 0]}>
             {data.map((_, index) => (
               <Cell key={index} fill={COLORS[index % COLORS.length]} />
             ))}

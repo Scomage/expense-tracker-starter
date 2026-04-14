@@ -1,26 +1,24 @@
 /* ── Layout ──────────────────────────────────────────────────── */
 .app {
-  max-width: 900px;
+  max-width: 880px;
   margin: 0 auto;
-  padding: 52px 28px 96px;
+  padding: 48px 24px 80px;
 }
 
 .app > h1 {
-  font-family: var(--font-body);
-  font-size: 30px;
-  font-weight: 700;
-  line-height: 1;
+  font-size: 28px;
+  font-weight: 800;
   letter-spacing: -0.5px;
   color: var(--text-primary);
-  margin-bottom: 5px;
+  margin-bottom: 4px;
   animation: fadeUp 0.4s ease both;
 }
 
 .subtitle {
-  font-size: 13px;
+  font-size: 13.5px;
   font-weight: 400;
   color: var(--text-muted);
-  margin-bottom: 36px;
+  margin-bottom: 32px;
   animation: fadeUp 0.4s 0.05s ease both;
 }
 
@@ -36,10 +34,10 @@
   margin-bottom: 14px;
 }
 
-.summary         { animation: fadeUp 0.4s 0.08s ease both; }
-.spending-chart  { animation: fadeUp 0.4s 0.12s ease both; }
-.add-transaction { animation: fadeUp 0.4s 0.16s ease both; }
-.transactions    { animation: fadeUp 0.4s 0.20s ease both; }
+.summary         { animation: fadeUp 0.4s 0.10s ease both; }
+.spending-chart  { animation: fadeUp 0.4s 0.15s ease both; }
+.add-transaction { animation: fadeUp 0.4s 0.20s ease both; }
+.transactions    { animation: fadeUp 0.4s 0.25s ease both; }
 
 /* ── Summary cards ───────────────────────────────────────────── */
 .summary {
@@ -51,39 +49,10 @@
 
 .summary-card {
   padding: 24px 28px;
-  position: relative;
 }
 
 .summary-card:not(:last-child) {
   border-right: 1px solid var(--border);
-}
-
-/* Colored top accent per card */
-.summary-card:nth-child(1)::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--income);
-  border-radius: var(--radius) var(--radius) 0 0;
-}
-
-.summary-card:nth-child(2)::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--expense);
-  border-radius: var(--radius) var(--radius) 0 0;
-}
-
-.summary-card:nth-child(3)::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--accent);
-  border-radius: var(--radius) var(--radius) 0 0;
 }
 
 .summary-card h3 {
@@ -92,18 +61,53 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-muted);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Colored indicator dots */
+.summary-card:nth-child(1) h3::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--income);
+  flex-shrink: 0;
+}
+
+.summary-card:nth-child(2) h3::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--expense);
+  flex-shrink: 0;
+}
+
+.summary-card:nth-child(3) h3::before {
+  content: '';
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
 }
 
 .income-amount,
 .expense-amount,
 .balance-amount {
-  font-family: var(--font-display);
-  font-size: 34px;
-  font-weight: 500;
+  font-size: 36px;
+  font-weight: 700;
   line-height: 1;
-  letter-spacing: -1px;
+  letter-spacing: -0.5px;
   display: block;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
 }
 
 .income-amount  { color: var(--income); }
@@ -114,11 +118,11 @@
 .spending-chart h2,
 .add-transaction h2,
 .transactions h2 {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   margin-bottom: 18px;
 }
 
@@ -141,12 +145,13 @@ form {
 
 form input,
 form select {
-  padding: 9px 13px;
+  padding: 9px 12px;
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   background: var(--bg);
-  font-family: var(--font-body);
-  font-size: 14px;
+  font-family: var(--font);
+  font-size: 13.5px;
+  font-weight: 400;
   color: var(--text-primary);
   outline: none;
   transition: border-color 0.15s, box-shadow 0.15s;
@@ -157,16 +162,26 @@ form select {
 form input:focus,
 form select:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(180, 83, 9, 0.08);
+  box-shadow: 0 0 0 3px var(--accent-light);
+  background: var(--surface);
 }
 
 form input::placeholder {
   color: var(--text-muted);
+  font-weight: 400;
 }
 
 form input[type="text"]   { flex: 2; min-width: 140px; }
-form input[type="number"] { flex: 1; min-width: 100px; }
-form select               { flex: 1; min-width: 120px; cursor: pointer; }
+form input[type="number"] { flex: 1; min-width: 100px; font-variant-numeric: tabular-nums; }
+form select               { flex: 1; min-width: 120px; cursor: pointer; color: var(--text-secondary); }
+
+.field-error {
+  width: 100%;
+  font-size: 12px;
+  color: var(--expense);
+  font-weight: 500;
+  margin-top: -4px;
+}
 
 form button {
   padding: 9px 22px;
@@ -174,15 +189,20 @@ form button {
   color: #fff;
   border: none;
   border-radius: var(--radius-sm);
-  font-family: var(--font-body);
-  font-size: 14px;
+  font-family: var(--font);
+  font-size: 13.5px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.15s, transform 0.1s;
+  transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
   white-space: nowrap;
+  letter-spacing: 0.01em;
 }
 
-form button:hover  { background: var(--accent-hover); }
+form button:hover {
+  background: var(--accent-hover);
+  box-shadow: 0 2px 8px rgba(13, 115, 119, 0.3);
+}
+
 form button:active { transform: scale(0.98); }
 
 /* ── Transactions ────────────────────────────────────────────── */
@@ -192,29 +212,35 @@ form button:active { transform: scale(0.98); }
 
 .filters {
   display: flex;
-  gap: 8px;
+  gap: 6px;
   margin-bottom: 16px;
 }
 
 .filters select {
-  padding: 5px 13px;
+  padding: 5px 12px;
   border: 1px solid var(--border);
   border-radius: 20px;
-  background: transparent;
-  font-family: var(--font-body);
+  background: var(--surface);
+  font-family: var(--font);
   font-size: 12.5px;
+  font-weight: 500;
   color: var(--text-secondary);
   cursor: pointer;
   outline: none;
-  transition: border-color 0.15s, color 0.15s;
+  transition: all 0.15s;
   -webkit-appearance: none;
   appearance: none;
 }
 
-.filters select:hover,
+.filters select:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 .filters select:focus {
   border-color: var(--accent);
-  color: var(--text-primary);
+  color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-light);
 }
 
 table {
@@ -225,59 +251,53 @@ table {
 th {
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   color: var(--text-muted);
-  padding: 0 12px 10px;
+  padding: 0 10px 10px;
   text-align: left;
   border-bottom: 1px solid var(--border);
 }
 
 td {
-  padding: 12px 12px;
-  font-size: 14px;
+  padding: 12px 10px;
+  font-size: 13.5px;
   color: var(--text-primary);
   border-bottom: 1px solid var(--border-subtle);
 }
 
-tbody tr:last-child td {
-  border-bottom: none;
-}
+tbody tr:last-child td { border-bottom: none; }
 
-tbody tr {
-  transition: background 0.1s;
-}
+tbody tr { transition: background 0.1s; }
 
-tbody tr:hover {
-  background: var(--surface-hover);
-}
+tbody tr:hover { background: var(--surface-hover); }
 
-/* Amount spans use display font */
+/* Amount spans in table rows */
 td .income-amount,
 td .expense-amount {
-  font-family: var(--font-display);
   font-size: 15px;
-  font-weight: 500;
-  letter-spacing: -0.3px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
   display: inline;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
 }
-
-td .income-amount { color: var(--income); }
-td .expense-amount { color: var(--expense); }
 
 /* Category cell */
 tbody td:nth-child(3) {
   font-size: 12.5px;
   color: var(--text-secondary);
   text-transform: capitalize;
+  font-weight: 500;
 }
 
 /* Date cell */
 tbody td:nth-child(1) {
-  font-family: var(--font-display);
-  font-size: 11.5px;
+  font-size: 12.5px;
   color: var(--text-muted);
-  letter-spacing: 0;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
 }
 
 /* ── Delete button ───────────────────────────────────────────── */
@@ -290,7 +310,7 @@ tbody td:nth-child(1) {
   font-size: 13px;
   color: var(--text-muted);
   line-height: 1;
-  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  transition: all 0.15s;
 }
 
 .delete-btn:hover {

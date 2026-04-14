@@ -1,6 +1,6 @@
 import { useState } from 'react'
-
-const categories = ["food", "housing", "utilities", "transport", "entertainment", "salary", "other"];
+import { CATEGORIES } from './constants'
+import { formatCurrency } from './formatCurrency'
 
 function TransactionList({ transactions, onDelete }) {
   const [filterType, setFilterType] = useState("all");
@@ -25,7 +25,7 @@ function TransactionList({ transactions, onDelete }) {
         </select>
         <select value={filterCategory} onChange={(e) => setFilterCategory(e.target.value)}>
           <option value="all">All Categories</option>
-          {categories.map(cat => (
+          {CATEGORIES.map(cat => (
             <option key={cat} value={cat}>{cat}</option>
           ))}
         </select>
@@ -49,11 +49,11 @@ function TransactionList({ transactions, onDelete }) {
               <td>{t.category}</td>
               <td>
                 <span className={t.type === "income" ? "income-amount" : "expense-amount"}>
-                  {t.type === "income" ? "+" : "-"}${t.amount}
+                  {t.type === "income" ? "+" : "-"}{formatCurrency(t.amount)}
                 </span>
               </td>
               <td>
-                <button className="delete-btn" onClick={() => onDelete(t.id)}>🗑️</button>
+                <button className="delete-btn" onClick={() => onDelete(t.id)} aria-label={`Delete transaction: ${t.description}`}>🗑️</button>
               </td>
             </tr>
           ))}

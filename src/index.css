@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap');
 
 *, *::before, *::after {
   margin: 0;
@@ -7,36 +7,48 @@
 }
 
 :root {
-  --bg:              #F6F4F0;
+  --bg:              #F3F5F7;
   --surface:         #FFFFFF;
-  --surface-hover:   #FAFAF8;
-  --border:          #E4E0D9;
-  --border-subtle:   #EEEBe5;
-  --text-primary:    #18181B;
-  --text-secondary:  #71717A;
-  --text-muted:      #A1A1AA;
-  --income:          #15803D;
-  --income-light:    #DCFCE7;
+  --surface-hover:   #F8FAFB;
+  --border:          #E4E8EC;
+  --border-subtle:   #EEF1F4;
+  --text-primary:    #111827;
+  --text-secondary:  #6B7280;
+  --text-muted:      #9CA3AF;
+  --income:          #047857;
+  --income-light:    #ECFDF5;
   --expense:         #DC2626;
-  --expense-light:   #FEE2E2;
-  --accent:          #B45309;
-  --accent-hover:    #92400E;
-  --shadow-sm:       0 1px 2px rgba(0,0,0,0.05), 0 1px 1px rgba(0,0,0,0.03);
-  --shadow-md:       0 4px 16px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.05);
-  --radius:          12px;
-  --radius-sm:       7px;
-  --font-display:    'JetBrains Mono', 'Courier New', monospace;
-  --font-body:       'Figtree', system-ui, sans-serif;
+  --expense-light:   #FEF2F2;
+  --accent:          #0D7377;
+  --accent-hover:    #0A5F63;
+  --accent-light:    #E6F4F5;
+  --shadow-sm:       0 1px 3px rgba(0,0,0,0.07), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md:       0 4px 12px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05);
+  --radius:          10px;
+  --radius-sm:       6px;
+  --font:            'Manrope', system-ui, sans-serif;
 }
 
 body {
-  font-family: var(--font-body);
+  font-family: var(--font);
   background: var(--bg);
   color: var(--text-primary);
   font-size: 14px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 @keyframes fadeUp {

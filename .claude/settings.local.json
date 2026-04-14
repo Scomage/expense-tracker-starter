@@ -17,7 +17,9 @@
       "Bash(\"/c/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Microsoft/VisualStudio/NodeJs/npm.cmd\" install recharts)",
       "Bash(export PATH=\"/c/Program Files/nodejs:$PATH\")",
       "Bash(\"/c/Program Files/nodejs/npm.cmd\" run dev)",
-      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173)"
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173)",
+      "Bash(\"/c/Program Files/nodejs/npm.cmd\" run lint)",
+      "Bash(\"/c/Program Files/nodejs/npm.cmd\" run build)"
     ]
   }
 }

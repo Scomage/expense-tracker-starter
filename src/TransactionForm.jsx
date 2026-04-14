@@ -22,7 +22,7 @@ function TransactionForm({ onAdd }) {
       hasError = true;
     }
 
-    if (isNaN(parsed) || parsed <= 0) {
+    if (isNaN(parsed) || parsed < 0.01) {
       setAmountError("Please enter a valid amount greater than zero.");
       hasError = true;
     }
@@ -42,7 +42,7 @@ function TransactionForm({ onAdd }) {
     setDescription("");
     setAmount("");
     setType("expense");
-    setCategory("food");
+    setCategory(EXPENSE_CATEGORIES[0]);
   };
 
   const handleTypeChange = (e) => {

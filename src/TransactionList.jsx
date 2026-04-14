@@ -1,10 +1,20 @@
 import { useState } from 'react'
-import { CATEGORIES } from './constants'
+import { CATEGORIES, INCOME_CATEGORIES, EXPENSE_CATEGORIES } from './constants'
 import { formatCurrency } from './formatCurrency'
 
 function TransactionList({ transactions, onDelete }) {
   const [filterType, setFilterType] = useState("all");
   const [filterCategory, setFilterCategory] = useState("all");
+
+  const categoryOptions =
+    filterType === "income"  ? INCOME_CATEGORIES  :
+    filterType === "expense" ? EXPENSE_CATEGORIES :
+    CATEGORIES;
+
+  const handleTypeChange = (e) => {
+    setFilterType(e.target.value);
+    setFilterCategory("all");
+  };
 
   let filtered = transactions;
   if (filterType !== "all") {
@@ -19,7 +29,7 @@ function TransactionList({ transactions, onDelete }) {
       <h2>Transactions</h2>
       <div className="filters">
         <label htmlFor="filter-type" className="sr-only">Filter by type</label>
-        <select id="filter-type" value={filterType} onChange={(e) => setFilterType(e.target.value)}>
+        <select id="filter-type" value={filterType} onChange={handleTypeChange}>
           <option value="all">All Types</option>
           <option value="income">Income</option>
           <option value="expense">Expense</option>
@@ -27,8 +37,8 @@ function TransactionList({ transactions, onDelete }) {
         <label htmlFor="filter-category" className="sr-only">Filter by category</label>
         <select id="filter-category" value={filterCategory} onChange={(e) => setFilterCategory(e.target.value)}>
           <option value="all">All Categories</option>
-          {CATEGORIES.map(cat => (
-            <option key={cat} value={cat}>{cat}</option>
+          {categoryOptions.map(cat => (
+            <option key={cat} value={cat}>{cat.charAt(0).toUpperCase() + cat.slice(1)}</option>
           ))}
         </select>
       </div>
@@ -51,7 +61,7 @@ function TransactionList({ transactions, onDelete }) {
               <tr key={t.id}>
                 <td>{t.date}</td>
                 <td>{t.description}</td>
-                <td>{t.category}</td>
+                <td>{t.category.charAt(0).toUpperCase() + t.category.slice(1)}</td>
                 <td>
                   <span className={t.type === "income" ? "income-amount" : "expense-amount"}>
                     {t.type === "income" ? "+" : "-"}{formatCurrency(t.amount)}

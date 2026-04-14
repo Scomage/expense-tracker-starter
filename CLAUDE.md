@@ -29,6 +29,3 @@ React app with no routing, no state management library, and no backend. Componen
 - `TransactionList.jsx` — owns filter state; receives `transactions` and renders the filtered table
 
 All amounts are stored as numbers. `TransactionForm` uses `parseFloat` when building the new transaction object.
-
-**Known data issue (intentional for the course):**
-- Transaction #4 ("Freelance Work") is typed as `"expense"` but categorized as `"salary"` — a data inconsistency.

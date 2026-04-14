@@ -1,11 +1,45 @@
-* {
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+:root {
+  --bg:              #F6F4F0;
+  --surface:         #FFFFFF;
+  --surface-hover:   #FAFAF8;
+  --border:          #E4E0D9;
+  --border-subtle:   #EEEBe5;
+  --text-primary:    #18181B;
+  --text-secondary:  #71717A;
+  --text-muted:      #A1A1AA;
+  --income:          #15803D;
+  --income-light:    #DCFCE7;
+  --expense:         #DC2626;
+  --expense-light:   #FEE2E2;
+  --accent:          #B45309;
+  --accent-hover:    #92400E;
+  --shadow-sm:       0 1px 2px rgba(0,0,0,0.05), 0 1px 1px rgba(0,0,0,0.03);
+  --shadow-md:       0 4px 16px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.05);
+  --radius:          12px;
+  --radius-sm:       7px;
+  --font-display:    'JetBrains Mono', 'Courier New', monospace;
+  --font-body:       'Figtree', system-ui, sans-serif;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background-color: #ffffff;
-  color: #333;
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text-primary);
+  font-size: 14px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
 }

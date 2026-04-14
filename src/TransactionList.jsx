@@ -47,8 +47,10 @@ function TransactionList({ transactions, onDelete }) {
               <td>{t.date}</td>
               <td>{t.description}</td>
               <td>{t.category}</td>
-              <td className={t.type === "income" ? "income-amount" : "expense-amount"}>
-                {t.type === "income" ? "+" : "-"}${t.amount}
+              <td>
+                <span className={t.type === "income" ? "income-amount" : "expense-amount"}>
+                  {t.type === "income" ? "+" : "-"}${t.amount}
+                </span>
               </td>
               <td>
                 <button className="delete-btn" onClick={() => onDelete(t.id)}>🗑️</button>

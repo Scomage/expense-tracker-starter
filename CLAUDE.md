@@ -4,20 +4,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Commands
 
-Node.js is not on the system PATH. Use the Visual Studio-bundled node at:
-`C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VisualStudio\NodeJs\`
-
-Always prefix commands with:
+Node.js is at `C:\Program Files\nodejs\`. Always prefix commands with:
 ```bash
-export PATH="/c/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Microsoft/VisualStudio/NodeJs:$PATH"
+export PATH="/c/Program Files/nodejs:$PATH"
 ```
 
 Then use the full path to npm:
 ```bash
-"/c/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Microsoft/VisualStudio/NodeJs/npm.cmd" run dev
-"/c/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Microsoft/VisualStudio/NodeJs/npm.cmd" install
-"/c/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Microsoft/VisualStudio/NodeJs/npm.cmd" run build
-"/c/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Microsoft/VisualStudio/NodeJs/npm.cmd" run lint
+"/c/Program Files/nodejs/npm.cmd" run dev
+"/c/Program Files/nodejs/npm.cmd" install
+"/c/Program Files/nodejs/npm.cmd" run build
+"/c/Program Files/nodejs/npm.cmd" run lint
 ```
 
 App runs at `http://localhost:5173`.
